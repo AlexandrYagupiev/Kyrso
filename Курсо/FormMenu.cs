@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Курсо
 {
@@ -15,13 +16,13 @@ namespace Курсо
        
         public FormMenu()
         {
-            InitializeComponent();
+            InitializeComponent();        
         }
        
 
         private void FormMenu_Load(object sender, EventArgs e)
         {
-
+            SoundPlayer player = new SoundPlayer("");
         }
 
         private void buttonNewGame_Click(object sender, EventArgs e)
