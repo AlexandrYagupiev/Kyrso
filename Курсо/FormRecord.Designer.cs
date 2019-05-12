@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecord));
             this.buttonExitMenu = new System.Windows.Forms.Button();
             this.DataGridViewRecord = new System.Windows.Forms.DataGridView();
             this.НомерИгрока = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ИмяИгрока = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Счёт = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MediaPlayerRecord = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewRecord)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayerRecord)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonExitMenu
@@ -68,7 +71,6 @@
             this.DataGridViewRecord.RowHeadersVisible = false;
             this.DataGridViewRecord.Size = new System.Drawing.Size(343, 496);
             this.DataGridViewRecord.TabIndex = 15;
-            this.DataGridViewRecord.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Record_CellContentClick);
             // 
             // НомерИгрока
             // 
@@ -91,6 +93,16 @@
             this.Счёт.ReadOnly = true;
             this.Счёт.Width = 120;
             // 
+            // MediaPlayerRecord
+            // 
+            this.MediaPlayerRecord.Enabled = true;
+            this.MediaPlayerRecord.Location = new System.Drawing.Point(697, 526);
+            this.MediaPlayerRecord.Name = "MediaPlayerRecord";
+            this.MediaPlayerRecord.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MediaPlayerRecord.OcxState")));
+            this.MediaPlayerRecord.Size = new System.Drawing.Size(75, 23);
+            this.MediaPlayerRecord.TabIndex = 16;
+            this.MediaPlayerRecord.Visible = false;
+            // 
             // FormRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,6 +110,7 @@
             this.BackgroundImage = global::Курсо.Properties.Resources.Rec;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.MediaPlayerRecord);
             this.Controls.Add(this.DataGridViewRecord);
             this.Controls.Add(this.buttonExitMenu);
             this.DoubleBuffered = true;
@@ -109,6 +122,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormRecord_FormClosed);
             this.Load += new System.EventHandler(this.FormRecord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewRecord)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayerRecord)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -120,5 +134,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn НомерИгрока;
         private System.Windows.Forms.DataGridViewTextBoxColumn ИмяИгрока;
         private System.Windows.Forms.DataGridViewTextBoxColumn Счёт;
+        private AxWMPLib.AxWindowsMediaPlayer MediaPlayerRecord;
     }
 }

@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenu));
             this.buttonRecord = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.buttonNewGame = new System.Windows.Forms.Button();
+            this.MediaPlayerMenu = new AxWMPLib.AxWindowsMediaPlayer();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayerMenu)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonRecord
@@ -78,6 +81,16 @@
             this.buttonNewGame.UseVisualStyleBackColor = false;
             this.buttonNewGame.Click += new System.EventHandler(this.buttonNewGame_Click);
             // 
+            // MediaPlayerMenu
+            // 
+            this.MediaPlayerMenu.Enabled = true;
+            this.MediaPlayerMenu.Location = new System.Drawing.Point(13, 537);
+            this.MediaPlayerMenu.Name = "MediaPlayerMenu";
+            this.MediaPlayerMenu.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MediaPlayerMenu.OcxState")));
+            this.MediaPlayerMenu.Size = new System.Drawing.Size(11, 12);
+            this.MediaPlayerMenu.TabIndex = 4;
+            this.MediaPlayerMenu.Visible = false;
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -85,6 +98,7 @@
             this.BackgroundImage = global::Курсо.Properties.Resources.Menu;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.MediaPlayerMenu);
             this.Controls.Add(this.buttonNewGame);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonRecord);
@@ -95,6 +109,7 @@
             this.Text = "Меню";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMenu_FormClosed);
             this.Load += new System.EventHandler(this.FormMenu_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayerMenu)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -104,6 +119,7 @@
         private System.Windows.Forms.Button buttonRecord;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button buttonNewGame;
+        public AxWMPLib.AxWindowsMediaPlayer MediaPlayerMenu;
     }
 }
 

@@ -12,33 +12,29 @@ using System.Media;
 namespace Курсо
 {
     public partial class FormMenu : Form
-    {
-       
+    {     
         public FormMenu()
         {
             InitializeComponent();        
         }
-       
-
         private void FormMenu_Load(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer("");
+            MediaPlayerMenu.URL = "Меню.wav";
         }
-
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
+            MediaPlayerMenu.Ctlcontrols.stop();
             FormGame formGame= new FormGame();
             formGame.Show();
-            this.Hide();
+            this.Hide();  
         }
-
         private void buttonRecord_Click(object sender, EventArgs e)
         {
+            MediaPlayerMenu.Ctlcontrols.stop();
             FormRecord formRecord = new FormRecord();
             formRecord.Show();
-            this.Hide();
+            this.Hide();   
         }
-
         private void buttonExit_Click(object sender, EventArgs e)
         {
             DialogResult res = new DialogResult();
@@ -52,7 +48,6 @@ namespace Курсо
             { return; }
             Application.Exit();
         }
-
         private void FormMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

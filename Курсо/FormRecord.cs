@@ -12,26 +12,25 @@ using System.IO;
 namespace Курсо
 {
     public partial class FormRecord : Form
-    {
+    {       
         public FormRecord()
         {  
             InitializeComponent();
         }
-
         private void buttonExitMenu_Click(object sender, EventArgs e)
         {
+            MediaPlayerRecord.Ctlcontrols.stop();
             FormMenu formMenu = new FormMenu();
             formMenu.Show();
             this.Hide();
         }
-
         private void FormRecord_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Application.Exit();   
         }
-
         private void FormRecord_Load(object sender, EventArgs e)
         {
+            MediaPlayerRecord.URL = "Рекорды.mp3";
             string[] data =new string [20];
             StreamReader reader = new StreamReader("Record.txt");
             data = reader.ReadToEnd().Split(';');
@@ -45,12 +44,7 @@ namespace Курсо
             {
                 DataGridViewRecord.Rows[j].Cells[0].Value = j+1;
             }
-            reader.Close();
-        }
-
-        private void Record_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+            reader.Close();        
+        } 
     }
 }

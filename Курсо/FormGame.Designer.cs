@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGame));
             this.buttonExitMenu = new System.Windows.Forms.Button();
             this.pictureBoxRocket = new System.Windows.Forms.PictureBox();
             this.pictureBoxMeteor = new System.Windows.Forms.PictureBox();
@@ -45,11 +46,13 @@
             this.labelWASD = new System.Windows.Forms.Label();
             this.labelCel = new System.Windows.Forms.Label();
             this.labelCelInf = new System.Windows.Forms.Label();
+            this.MediaPlayerGame = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRocket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMeteor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHP1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHP3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHP2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayerGame)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonExitMenu
@@ -223,6 +226,16 @@
             this.labelCelInf.TabIndex = 3;
             this.labelCelInf.Text = "Спасти планету и уничтожить \r\nкак можно больше метеоритов.";
             // 
+            // MediaPlayerGame
+            // 
+            this.MediaPlayerGame.Enabled = true;
+            this.MediaPlayerGame.Location = new System.Drawing.Point(8, 547);
+            this.MediaPlayerGame.Name = "MediaPlayerGame";
+            this.MediaPlayerGame.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("MediaPlayerGame.OcxState")));
+            this.MediaPlayerGame.Size = new System.Drawing.Size(14, 14);
+            this.MediaPlayerGame.TabIndex = 11;
+            this.MediaPlayerGame.Visible = false;
+            // 
             // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,6 +243,7 @@
             this.BackgroundImage = global::Курсо.Properties.Resources.Game;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.MediaPlayerGame);
             this.Controls.Add(this.labelCelInf);
             this.Controls.Add(this.labelStart);
             this.Controls.Add(this.labelCel);
@@ -258,6 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHP1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHP3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHP2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPlayerGame)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +295,6 @@
         private System.Windows.Forms.Label labelWASD;
         private System.Windows.Forms.Label labelCel;
         private System.Windows.Forms.Label labelCelInf;
+        public AxWMPLib.AxWindowsMediaPlayer MediaPlayerGame;
     }
 }

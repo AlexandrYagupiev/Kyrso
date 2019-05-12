@@ -8,9 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Media;
+
 
 namespace Курсо
-{
+{   
     public partial class FormGame : Form
     {
         public int score = 0;
@@ -18,7 +20,7 @@ namespace Курсо
         int timerCount = 0;
         int p1, p2;
         int b = 0;
-
+        SoundPlayer piy = new SoundPlayer("Выстрел.wav");
         public FormGame()
         {
             InitializeComponent();
@@ -28,11 +30,10 @@ namespace Курсо
             p1 = Size.Width - 150;
             p2 = Size.Height - 550;
         }
-
         List<PictureBox> pictureBoxesAmmo = new List<PictureBox>();
-
         private void buttonExitMenu_Click(object sender, EventArgs e)
         {
+            MediaPlayerGame.Ctlcontrols.stop();
             FormMenu formMenu = new FormMenu();
             formMenu.Show();
             this.Hide();
@@ -41,12 +42,10 @@ namespace Курсо
             timerMeteor.Stop();
             timerMeteor.Dispose();
         }
-
         private void FormGame_Load(object sender, EventArgs e)
         {
-
+            MediaPlayerGame.URL = "Игра.wav";   
         }
-
         private void Meteor(ref PictureBox meteor)
         {
             meteor.Visible = false;
@@ -56,15 +55,12 @@ namespace Курсо
             meteor.Location = new Point(rnd.Next(p1 - s1), rnd.Next(p2 - s2));
             meteor.Visible = true;
         }
-
         private bool CheckIntersect(ref PictureBox rect1, ref PictureBox rect2)
         {
             Rectangle mt = new Rectangle(rect1.Location, rect1.Size);
             Rectangle rk = new Rectangle(rect2.Location, rect2.Size);
-
             if (mt.IntersectsWith(rk))
                 return true;
-
             return false;
         }
         private void FormGame_KeyDown(object sender, KeyEventArgs e)
@@ -75,21 +71,18 @@ namespace Курсо
                 timerDel.Start();
                 timerMeteor.Start();
             }
-
             if (e.KeyData == Keys.W && pictureBoxRocket.Location.Y >= 0)
             {
                 Size save = pictureBoxRocket.Size;
                 pictureBoxRocket.Size = new Size(1, 1);
                 pictureBoxRocket.Location = new Point(pictureBoxRocket.Location.X, pictureBoxRocket.Location.Y - 10);
                 pictureBoxRocket.Size = save;
-
                 if (CheckIntersect(ref pictureBoxRocket, ref pictureBoxMeteor))
                 {
                     b++;
                     Meteor(ref pictureBoxMeteor);
                 }
             }
-
             if (e.KeyData == Keys.S && pictureBoxRocket.Location.Y < this.Height - pictureBoxRocket.Height - 94)
             {
                 Size save = pictureBoxRocket.Size;
@@ -103,7 +96,6 @@ namespace Курсо
                     Meteor(ref pictureBoxMeteor);
                 }
             }
-
             if (e.KeyData == Keys.A && pictureBoxRocket.Location.X + 10 >= 0)
             {
                 Size save = pictureBoxRocket.Size;
@@ -117,7 +109,6 @@ namespace Курсо
                     Meteor(ref pictureBoxMeteor);
                 }
             }
-
             if (e.KeyData == Keys.D && pictureBoxRocket.Location.X <= this.Width - pictureBoxRocket.Width - 10)
             {
                 Size save = pictureBoxRocket.Size;
@@ -131,7 +122,6 @@ namespace Курсо
                     Meteor(ref pictureBoxMeteor);
                 }
             }
-
             if (e.KeyData == Keys.Space)
             {
                 if (check)
@@ -148,11 +138,11 @@ namespace Курсо
                     check = false;
                     timerShot.Dispose();
                     timerShot.Start();
+                    piy.Play();
                 }
             }
 
         }
-
         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -189,7 +179,6 @@ namespace Курсо
                 labelScore.Text = score.ToString();
             }
         }
-
         private void timerShot_Tick(object sender, EventArgs e)
         {
             timerCount++;
@@ -201,7 +190,6 @@ namespace Курсо
                 timerCount = 0;
             }
         }
-
         private void CheckHP()
         {
             switch (b)
@@ -269,7 +257,8 @@ namespace Курсо
                         {
                             StreamWriter stream = new StreamWriter("Record.txt", true);
                             stream.Write("{0} {1};",Name.Text,Score.Text);
-                            stream.Close();   
+                            stream.Close();
+                            MediaPlayerGame.Ctlcontrols.stop();
                         }
                         ok.Click += ButtonOK;
                         rec.Controls.Add(Name);
@@ -285,10 +274,8 @@ namespace Курсо
                     break;
             }
         }
-      
         private void timerMeteor_Tick(object sender, EventArgs e)
         {
-
             if (pictureBoxMeteor.Location.Y < this.Height - pictureBoxMeteor.Height - 97)
             {
                 Size save = pictureBoxMeteor.Size;
