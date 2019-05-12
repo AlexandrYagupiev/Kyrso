@@ -21,6 +21,7 @@ namespace Курсо
         int p1, p2;
         int b = 0;
         SoundPlayer piy = new SoundPlayer("Выстрел.wav");
+        SoundPlayer bum = new SoundPlayer("бум.wav");
         public FormGame()
         {
             InitializeComponent();
@@ -60,13 +61,15 @@ namespace Курсо
             Rectangle mt = new Rectangle(rect1.Location, rect1.Size);
             Rectangle rk = new Rectangle(rect2.Location, rect2.Size);
             if (mt.IntersectsWith(rk))
-                return true;
+            return true;
             return false;
+            
         }
         private void FormGame_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
             {
+                SystemSounds.Beep.Play();
                 labelStart.Visible = false;
                 timerDel.Start();
                 timerMeteor.Start();
@@ -80,7 +83,7 @@ namespace Курсо
                 if (CheckIntersect(ref pictureBoxRocket, ref pictureBoxMeteor))
                 {
                     b++;
-                    Meteor(ref pictureBoxMeteor);
+                    Meteor(ref pictureBoxMeteor);  
                 }
             }
             if (e.KeyData == Keys.S && pictureBoxRocket.Location.Y < this.Height - pictureBoxRocket.Height - 94)
@@ -93,7 +96,7 @@ namespace Курсо
                 if (CheckIntersect(ref pictureBoxRocket, ref pictureBoxMeteor))
                 {
                     b++;
-                    Meteor(ref pictureBoxMeteor);
+                    Meteor(ref pictureBoxMeteor);   
                 }
             }
             if (e.KeyData == Keys.A && pictureBoxRocket.Location.X + 10 >= 0)
@@ -119,7 +122,7 @@ namespace Курсо
                 if (CheckIntersect(ref pictureBoxRocket, ref pictureBoxMeteor))
                 {
                     b++;
-                    Meteor(ref pictureBoxMeteor);
+                    Meteor(ref pictureBoxMeteor);  
                 }
             }
             if (e.KeyData == Keys.Space)
@@ -194,11 +197,11 @@ namespace Курсо
         {
             switch (b)
             {
-                case 1: pictureBoxHP3.Visible = false; break;
-                case 2: pictureBoxHP2.Visible = false; break;
+                case 1: pictureBoxHP3.Visible = false; bum.Play(); break;
+                case 2: pictureBoxHP2.Visible = false; bum.Play(); break;
                 case 3:
                     {
-                        pictureBoxHP1.Visible = false;
+                        pictureBoxHP1.Visible = false; bum.Play();
 
                         timerDel.Stop();
                         timerDel.Dispose();
